@@ -1,0 +1,29 @@
+.container-start {
+    text-align: center;
+}
+
+.container-question {
+    text-align: center;
+}
+
+ul.answers {
+    width: 300px;
+    list-style: none;
+    padding-left: 20px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+li.answer {
+    color: white;
+    text-align: center;
+    font-size: 26px;
+    background-color: blue;
+    padding: 20px;
+    border: 1px solid black;
+    margin-bottom: 10px;
+  }
+
+.container-end {
+    text-align: center;
+}

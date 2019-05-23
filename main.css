@@ -6,24 +6,33 @@
     text-align: center;
 }
 
-ul.answers {
+.answers {
     width: 300px;
     list-style: none;
     padding-left: 20px;
     margin-left: auto;
     margin-right: auto;
+    display: flex;
   }
   
-li.answer {
+.answer {
+    width: 100px;
     color: white;
     text-align: center;
     font-size: 26px;
-    background-color: blue;
+    background-color: forestgreen;
     padding: 20px;
     border: 1px solid black;
     margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
   }
 
 .container-end {
     text-align: center;
+}
+
+.questions-form {
+    display:flex;
+    justify-content: center;
 }

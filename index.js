@@ -37,9 +37,26 @@ function changeQuestion () {
         return false;
     }
 }
+//hit start button to start the quiz
+function startQuiz () {
+    const startButton = $('.startButton');
+    startButton.on('click', function (event) {
+        event.preventDefault();
+        //hide container-start screen and view container-question
+        console.log('start button clicked');
+        const theStart = $('.container-start');
+        const theQuestion = $('.container-question');
+        theStart.hide();
+        theQuestion.show();
+
+        
+    });
+
+}
 
 function nextQuestionButton () {
     //hit submit to render next question
+    //we want to attach a function on the click event
     const submitButton = $('.submitButton');
     submitButton.on('click', function (event) {
         event.preventDefault();
@@ -62,6 +79,7 @@ $(function () {
     const generateQuestion = DATASTORE[question];
     printQuestion (generateQuestion);
     nextQuestionButton();
+    startQuiz();
     console.log("page loaded");
 });
 

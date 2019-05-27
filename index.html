@@ -8,8 +8,9 @@
         <link href="index.css" rel="stylesheet" type="text/css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css">
         <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="datastore.js"></script>
-        <!-- <script src="index.js"></script> -->
+        <script src="index.js"></script>
     </head>
 <body>
 
@@ -20,28 +21,28 @@
   </div>
 
   <div class="container-question">
-    <h2>How many lakes are there in Rocky Mountain National Park?</h2>
+    <h2>Question:</h2>
     <form class="questions-form">
-        <fieldset name="answers">
+        <fieldset name="options">
 
-            <label class="answer">
-                <input type="radio" value="21" name="answer">
-                <span>21</span>
+            <label class="option">
+                <input type="radio" value="answer 1" name="answer">
+                <span>option 1</span>
             </label>
 
-            <label class="answer">
-                <input type="radio" value="7" name="answer">
-                <span>7</span>
+            <label class="option">
+                <input type="radio" value="answer 2" name="answer">
+                <span>option 2</span>
             </label>
 
-            <label class="answer">
-                <input type="radio" value="156" name="answer">
-                <span>156</span>
+            <label class="option">
+                <input type="radio" value="answer 3" name="answer">
+                <span>option 3</span>
             </label>
 
-            <label class="answer">
-                <input type="radio" value="85" name="answer">
-                <span>85</span>
+            <label class="option">
+                <input type="radio" value="answer 4" name="answer">
+                <span>option 4</span>
             </label>
 
             <button type="submit" class="submitButton">Submit</button>
@@ -50,7 +51,7 @@
 
   </div>
 
-  <div class="container-end">
+  <div class="container-end" style="display:none">
     <h2>DONE!</h2>
     <p>Congratulations! You know about RMNP! Now take a hike!</p>
   </div>

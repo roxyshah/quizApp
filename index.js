@@ -57,9 +57,12 @@ function startQuiz () {
 function nextQuestionButton () {
     //hit submit to render next question
     //we want to attach a function on the click event
-    const submitButton = $('.submitButton');
-    submitButton.on('click', function (event) {
+    const questionForm = $('.questions-form');
+    questionForm.on('submit', function (event) {
+        console.log("SEND IT");
         event.preventDefault();
+        console.log(correctAnswer());
+        showResult();
         const hasNextQuestion = changeQuestion();
 
         if (hasNextQuestion === false) {
@@ -68,9 +71,74 @@ function nextQuestionButton () {
             theQuestion.hide();
             theEnd.show();
         }
+        
+        clearSelection();
     });
 
 }
+
+function clearSelection () {
+    //make sure all inputs are unselected
+    //.find() is queries , .get() is for indexing an array - specific to jQuery
+    let answerOptions = $('.option');
+    let inputs = answerOptions.find('input');
+    inputs.prop('checked', false);
+}
+
+
+//write a function:
+//that determines if the user has the correct answer
+//what to do if they don't
+//adding it to the score if they do have the answer correct
+
+function correctAnswer () {
+    let userAnswer = $('.option > input:checked');
+    console.log(userAnswer.val());
+    console.log(DATASTORE[question].answer);
+
+    if(userAnswer.val() === DATASTORE[question].answer) {
+        return true;
+
+    }
+    else {
+        return false;
+    }
+    
+}
+
+
+//if correctAnswer === true; then print "CORRECT"
+//if correctAnswer === false; then print "WRONG"
+//in the case that the user answers correctly, we want to hide the question and tell the user they're correct
+//in the case they the user answers incorrectly, we want to hide the question and tell the user they're incorrect
+function showResult () {
+    const theAnswerResult = $('.container-answerResult');
+    const theQuestion = $('.container-question'); 
+    theAnswerResult.show();
+    theQuestion.hide();
+    //let correctAnsP = $('.container-correctAnswer > p');
+    if (correctAnswer() === true) {
+        theAnswerResult.find('p').text("Correct!");
+    } 
+    else {
+        theAnswerResult.find('p').text("Wrong!");
+    }
+    
+}
+
+function continuteQuestions () {
+    const theAnswerResult = $('.container-answerResult');
+    const theQuestion = $('.container-question');
+    theAnswerResult.hide();
+    theQuestion.show();
+}
+
+function attachContinueQuestions () {
+    $('.nextButton').on('click', function (event) {
+        continuteQuestions();
+    });
+}
+
 
 
 
@@ -80,6 +148,7 @@ $(function () {
     printQuestion (generateQuestion);
     nextQuestionButton();
     startQuiz();
+    attachContinueQuestions();
     console.log("page loaded");
 });
 

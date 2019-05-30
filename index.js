@@ -1,13 +1,9 @@
 let question = 0;
 let score = 0;
 
-//create a function
-//Take a question from the datastore and put it on a page, using jQuery
-
-
-
+/** Take a question from the datastore and put it on a page, using jQuery
 //printing question to page
-//q represents current question
+//q represents current question*/
 function printQuestion (q) {
     let questionHeader = $('.container-question > h2');
     questionHeader.text(q.question);
@@ -20,41 +16,39 @@ function printQuestion (q) {
        $(answerOptions[i]).find('input').val(q.options[i]);
         
     }
-    //console.log(q);
 }
 
-
-function changeQuestion () {
+//
+function getNextQuestion () {
     if (question < DATASTORE.length-1) {
         question++;
+        
         const generateQuestion = DATASTORE[question];
-        //console.log(question);
-        printQuestion (generateQuestion);
-        return true;
-
+        return generateQuestion;
     }
     else { 
-        return false;
+        return null;
     }
 }
-//hit start button to start the quiz
+
+
+/**hit start button to start the quiz*/
 function startQuiz () {
     const startButton = $('.startButton');
     startButton.on('click', function (event) {
         event.preventDefault();
-        //hide container-start screen and view container-question
         console.log('start button clicked');
         const theStart = $('.container-start');
         const theQuestion = $('.container-question');
         theStart.hide();
         theQuestion.show();
-
-        
     });
 
 }
 
-function nextQuestionButton () {
+
+//taking the user input, comparing it to the correct answer, switching to the answerResult screen
+function selectSubmit () {
     //hit submit to render next question
     //we want to attach a function on the click event
     const questionForm = $('.questions-form');
@@ -63,19 +57,35 @@ function nextQuestionButton () {
         event.preventDefault();
         console.log(correctAnswer());
         showResult();
-        const hasNextQuestion = changeQuestion();
 
-        if (hasNextQuestion === false) {
-            const theEnd = $('.container-end');
-            const theQuestion = $('.container-question');
-            theQuestion.hide();
-            theEnd.show();
-        }
-        
         clearSelection();
     });
 
 }
+
+
+/**
+ * check if there is a next question
+ * if there are no more questions, show the end page
+ * if there are more questions, show the question page again
+ */
+function continuteQuestion () {
+    const nextQuestion = getNextQuestion();
+    const theAnswerResult = $('.container-answerResult');
+    theAnswerResult.hide();
+
+    if (nextQuestion) {
+        const theQuestion = $('.container-question');
+        printQuestion(nextQuestion);
+        theQuestion.show();
+
+    } else {
+        const theEnd = $('.container-end');
+        theEnd.show(); 
+    }
+
+}
+
 
 function clearSelection () {
     //make sure all inputs are unselected
@@ -86,11 +96,9 @@ function clearSelection () {
 }
 
 
-//write a function:
-//that determines if the user has the correct answer
-//what to do if they don't
-//adding it to the score if they do have the answer correct
 
+//TODO: write a function that determines if the user has the correct answer and what to do if they don't
+//adding it to the score if they do have the answer correct
 function correctAnswer () {
     let userAnswer = $('.option > input:checked');
     console.log(userAnswer.val());
@@ -107,10 +115,10 @@ function correctAnswer () {
 }
 
 
-//if correctAnswer === true; then print "CORRECT"
-//if correctAnswer === false; then print "WRONG"
-//in the case that the user answers correctly, we want to hide the question and tell the user they're correct
-//in the case they the user answers incorrectly, we want to hide the question and tell the user they're incorrect
+/**if correctAnswer === true; then print "CORRECT"
+if correctAnswer === false; then print "WRONG"
+in the case that the user answers correctly, we want to hide the question and tell the user they're correct
+in the case they the user answers incorrectly, we want to hide the question and tell the user they're incorrect*/
 function showResult () {
     const theAnswerResult = $('.container-answerResult');
     const theQuestion = $('.container-question'); 
@@ -126,27 +134,22 @@ function showResult () {
     
 }
 
-function continuteQuestions () {
-    const theAnswerResult = $('.container-answerResult');
-    const theQuestion = $('.container-question');
-    theAnswerResult.hide();
-    theQuestion.show();
-}
-
 function attachContinueQuestions () {
     $('.nextButton').on('click', function (event) {
-        continuteQuestions();
+        continuteQuestion();
     });
 }
 
-
+//the end
+const theEnd = $('.container-end');
+theEnd.show
 
 
 //jQuery document loaded function
 $(function () {
     const generateQuestion = DATASTORE[question];
     printQuestion (generateQuestion);
-    nextQuestionButton();
+    selectSubmit();
     startQuiz();
     attachContinueQuestions();
     console.log("page loaded");

@@ -1,5 +1,37 @@
+body {
+    background-image: url("./images/background_quizApp.png");
+    background-color: #cccccc; /* Used if the image is unavailable */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    padding-top: 100px;
+    height: 680px; /* You must set a specified height */
+    background-position: center; /* Center the image */
+    background-size: cover;
+    color: white;
+}
+
+.questionNumber-Score {
+    display: flex;
+    justify-content: flex-start;
+}
+
+
+.questionNumber-Score > ul {
+    margin-bottom: 75px;
+    text-align: center;
+}
+
 .container-start {
     text-align: center;
+    margin-top: 100px;
+}
+
+.container-faded {
+    padding: 50px;
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3));
+}
+
+.container-start > p {
+    padding-top: 50px;
 }
 
 .container-question {
@@ -16,16 +48,17 @@
   }
   
 .option {
-    width: 100px;
+    /* width: 200px; */
+    min-width: 200px;
     color: white;
-    text-align: center;
-    font-size: 26px;
-    background-color: forestgreen;
+    text-align: flex-start;
+    font-size: 20px;
     padding: 20px;
     border: 1px solid black;
     margin-bottom: 10px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    /* justify-content: flex-start; */
   }
 
 .container-end {
@@ -48,4 +81,38 @@
 
 .container-restart {
     text-align: center;
+}
+
+label:hover, label:focus {
+    background-color: #AF6438
+}
+
+button:hover, button:focus {
+    background-color: #363946;
+    color: #ebca52
+}
+
+fieldset {
+    border: none;
+}
+input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    border: 2px solid #ffffff;
+    transition: 0.2s all linear;
+    outline: none;
+    margin-right: 5px;
+    position: relative;
+    top: 2px;
+}
+input:checked {
+    border: 8px solid #ebca52;
+}
+input[type=radio] {
+    flex: 0 0 auto;
+    margin-right: 10px;
 }

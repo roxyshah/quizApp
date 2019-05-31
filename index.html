@@ -14,6 +14,13 @@
     </head>
 <body>
 
+<div class="questionNumber-Score">
+    <ul>
+        <li>QUESTION: <span class="question"></span></li>
+        <li>SCORE: <span class="score"></span></li>
+    </ul>
+</div>
+
   <div class="container-start">
     <h1>Welcome to the Rocky Mountain National Park Quiz!</h1>
     <p>Press "Start" to Begin</p>
@@ -59,8 +66,14 @@
 
   <div class="container-end" style="display:none">
     <h2>DONE!</h2>
-    <p>Congratulations! You know about RMNP! Now take a hike!</p>
+    <p>Congratulations! You got <span class="correct"></span> / <span class="total"></span> correct! Now take a hike!</p>
   </div>
+
+  <div class="container-restart" style="display:none">
+        <h1>Retake the Quiz!</h1>
+        <p>Press "Restart" to Begin</p>
+        <button type="submit" class="restartButton">Restart</button>
+      </div>
 
 </body>
 </html>

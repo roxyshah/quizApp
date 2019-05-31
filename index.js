@@ -1,5 +1,36 @@
 let question = 0;
-let score = 0;
+let scoreCorrect = 0;
+let scoreIncorrect = 0;
+
+
+/**
+ * //print on screen how many questions have been answered
+ * 
+ * @param {number} count 
+ * @param  {number} total
+ */ 
+function printQuestionCount (count, total) {
+
+    const questionCountDisplay = $('.questionNumber-Score span.question');
+    questionCountDisplay.text(count + " out of " + total);
+}
+
+
+//update score text
+function printScore (correct, incorrect) {
+
+    const scoreDisplay = $('.questionNumber-Score span.score');
+    scoreDisplay.text(correct + " correct, " + incorrect + " incorrect")
+  }
+
+//printing the overall score
+function overallScore (correct, total) {
+    const correctDisplay = $('.container-end span.correct');
+    const totalDisplay = $('.container-end span.total');
+    correctDisplay.text(correct);
+    totalDisplay.text(total);
+}
+
 
 /** Take a question from the datastore and put it on a page, using jQuery
 //printing question to page
@@ -20,9 +51,10 @@ function printQuestion (q) {
 
 //
 function getNextQuestion () {
+   
     if (question < DATASTORE.length-1) {
         question++;
-        
+
         const generateQuestion = DATASTORE[question];
         return generateQuestion;
     }
@@ -31,11 +63,16 @@ function getNextQuestion () {
     }
 }
 
-
 /**hit start button to start the quiz*/
 function startQuiz () {
+    printQuestionCount(question, DATASTORE.length);
+    printScore(scoreCorrect, scoreIncorrect);
+
     const startButton = $('.startButton');
+
     startButton.on('click', function (event) {
+        printQuestionCount(question + 1, DATASTORE.length);
+        printScore(scoreCorrect, scoreIncorrect);
         event.preventDefault();
         console.log('start button clicked');
         const theStart = $('.container-start');
@@ -57,7 +94,7 @@ function selectSubmit () {
         event.preventDefault();
         console.log(correctAnswer());
         showResult();
-
+        printScore(scoreCorrect, scoreIncorrect);
         clearSelection();
     });
 
@@ -74,6 +111,8 @@ function continuteQuestion () {
     const theAnswerResult = $('.container-answerResult');
     theAnswerResult.hide();
 
+    printQuestionCount(question + 1, DATASTORE.length);
+
     if (nextQuestion) {
         const theQuestion = $('.container-question');
         printQuestion(nextQuestion);
@@ -81,9 +120,39 @@ function continuteQuestion () {
 
     } else {
         const theEnd = $('.container-end');
+        const theRestartOption = $('.container-restart');
+        theRestartOption.show();
         theEnd.show(); 
+        overallScore(scoreCorrect, DATASTORE.length);
+        restartQuiz();
     }
 
+}
+/**theEnd.hide() and theRestartOption.hide() and theStart.show() ....when trying to switch from final screen to start screen again */
+function restartQuiz () {
+    const restartButton = $('.restartButton');
+    const theStart = $('.container-start');
+    
+    restartButton.on('click', function (event) {
+        event.preventDefault();
+        console.log('restart button clicked');
+
+        const theRestartOption = $('.container-restart');
+        const theEnd = $('.container-end');
+
+        question = 0;
+        printQuestionCount(question, DATASTORE.length);
+
+        scoreCorrect = 0;
+        scoreIncorrect = 0;
+        printScore(scoreCorrect, scoreIncorrect);
+        
+        theRestartOption.hide();
+        theEnd.hide();
+        theStart.show();
+    });
+
+    printQuestion(DATASTORE[question]);
 }
 
 
@@ -126,10 +195,12 @@ function showResult () {
     theQuestion.hide();
     //let correctAnsP = $('.container-correctAnswer > p');
     if (correctAnswer() === true) {
-        theAnswerResult.find('p').text("Correct!");
+        theAnswerResult.find('p').text("That's correct!");
+        scoreCorrect++;
     } 
     else {
-        theAnswerResult.find('p').text("Wrong!");
+        theAnswerResult.find('p').text("I'm sorry, that's incorrect. The correct answer is " + DATASTORE[question].answer + ".");
+        scoreIncorrect++;
     }
     
 }
@@ -140,9 +211,9 @@ function attachContinueQuestions () {
     });
 }
 
-//the end
-const theEnd = $('.container-end');
-theEnd.show
+// //the end
+// const theEnd = $('.container-end');
+// theEnd.show();
 
 
 //jQuery document loaded function
@@ -151,6 +222,7 @@ $(function () {
     printQuestion (generateQuestion);
     selectSubmit();
     startQuiz();
+    //restartQuiz();
     attachContinueQuestions();
     console.log("page loaded");
 });

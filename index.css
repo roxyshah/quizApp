@@ -36,3 +36,16 @@
     display:flex;
     justify-content: center;
 }
+
+.container-answerResult {
+    text-align: center;
+}
+
+.questionNumber-Score > ul {
+    list-style: none;
+    text-align: center;
+}
+
+.container-restart {
+    text-align: center;
+}

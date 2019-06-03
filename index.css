@@ -28,13 +28,13 @@ body {
     margin-top: 60px;
 }
 
+.container-start > p {
+    padding-top: 50px;
+}
+
 .container-faded {
     padding: 30px;
     background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3));
-}
-
-.container-start > p {
-    padding-top: 50px;
 }
 
 .container-question {

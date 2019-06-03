@@ -12,68 +12,70 @@
         <script src="datastore.js"></script>
         <script src="index.js"></script>
     </head>
-<body>
+    <body>
 
-<div class="questionNumber-Score">
-    <ul>
-        <li>QUESTION: <span class="question"></span></li>
-        <li>SCORE: <span class="score"></span></li>
-    </ul>
-</div>
+        <article class="questionNumber-Score">
+            <ul>
+                <li>QUESTION: <span class="question"></span></li>
+                <li>SCORE: <span class="score"></span></li>
+            </ul>
+        </article>
 
-  <div class="container-start container-faded">
-    <h1>Welcome to the Rocky Mountain National Park Quiz!</h1>
-    <p>Press "Start" to Begin</p>
-    <button type="submit" class="startButton">Start</button>
-  </div>
+        <main role="main">
+            <section class="container-start container-faded">
+                <header>
+                    <h1>Welcome to the Rocky Mountain National Park Quiz!</h1>
+                </header>
+                
+                <p>Press "Start" to Begin</p>
+                <button type="submit" class="startButton">Start</button>
+            </section>
 
-  <div class="container-question container-faded" style="display:none">
-    <h2>Question:</h2>
-    <form class="questions-form">
-        <fieldset name="options">
+            <section class="container-question container-faded" style="display:none">
+                <h2>Question:</h2>
+                <form class="questions-form">
+                    <fieldset name="options">
 
-            <label class="option">
-                <input type="radio" value="answer 1" name="answer" required>
-                <span>option 1</span>
-            </label>
+                        <label class="option">
+                            <input type="radio" value="answer 1" name="answer" required>
+                            <span>option 1</span>
+                        </label>
 
-            <label class="option">
-                <input type="radio" value="answer 2" name="answer" required>
-                <span>option 2</span>
-            </label>
+                        <label class="option">
+                            <input type="radio" value="answer 2" name="answer" required>
+                            <span>option 2</span>
+                        </label>
 
-            <label class="option">
-                <input type="radio" value="answer 3" name="answer" required>
-                <span>option 3</span>
-            </label>
+                        <label class="option">
+                            <input type="radio" value="answer 3" name="answer" required>
+                            <span>option 3</span>
+                        </label>
 
-            <label class="option">
-                <input type="radio" value="answer 4" name="answer" required>
-                <span>option 4</span>
-            </label>
+                        <label class="option">
+                            <input type="radio" value="answer 4" name="answer" required>
+                            <span>option 4</span>
+                        </label>
 
-            <button type="submit" class="submitButton">Submit</button>
-        </fieldset>
-    </form>
+                        <button type="submit" class="submitButton">Submit</button>
+                    </fieldset>
+                </form>
+            </section>
 
-  </div>
+            <section class="container-answerResult container-faded" style="display:none">
+                <p>This is where the answerResult should be.</p>
+                <button type="submit" class="nextButton">Next</button>
+            </section>
 
-  <div class="container-answerResult container-faded" style="display:none">
-      <p>This is where the answerResult should be.</p>
-      <button type="submit" class="nextButton">Next</button>
-  </div>
+            <section class="container-end container-faded" style="display:none">
+                <h2>DONE!</h2>
+                <p>Congratulations! You got <span class="correct"></span> / <span class="total"></span> correct! Now take a hike!</p>
+            </section>
 
-
-  <div class="container-end container-faded" style="display:none">
-    <h2>DONE!</h2>
-    <p>Congratulations! You got <span class="correct"></span> / <span class="total"></span> correct! Now take a hike!</p>
-  </div>
-
-  <div class="container-restart container-faded" style="display:none">
-        <h1>Retake the Quiz!</h1>
-        <p>Press "Restart" to Begin</p>
-        <button type="submit" class="restartButton">Restart</button>
-      </div>
-
-</body>
+            <section class="container-restart container-faded" style="display:none">
+                <h1>Retake the Quiz!</h1>
+                <p>Press "Restart" to Begin</p>
+                <button type="submit" class="restartButton">Restart</button>
+            </section>
+        </main>
+    </body>
 </html>

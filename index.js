@@ -74,32 +74,25 @@ function startQuiz () {
         printQuestionCount(question + 1, DATASTORE.length);
         printScore(scoreCorrect, scoreIncorrect);
         event.preventDefault();
-        console.log('start button clicked');
+
         const theStart = $('.container-start');
         const theQuestion = $('.container-question');
         theStart.hide();
         theQuestion.show();
     });
-
 }
-
 
 //taking the user input, comparing it to the correct answer, switching to the answerResult screen
 function selectSubmit () {
-    //hit submit to render next question
-    //we want to attach a function on the click event
     const questionForm = $('.questions-form');
     questionForm.on('submit', function (event) {
-        console.log("SEND IT");
         event.preventDefault();
-        console.log(correctAnswer());
         showResult();
+
         printScore(scoreCorrect, scoreIncorrect);
         clearSelection();
     });
-
 }
-
 
 /**
  * check if there is a next question
@@ -124,23 +117,22 @@ function continuteQuestion () {
         theRestartOption.show();
         theEnd.show(); 
         overallScore(scoreCorrect, DATASTORE.length);
-        restartQuiz();
     }
 
 }
 /**theEnd.hide() and theRestartOption.hide() and theStart.show() ....when trying to switch from final screen to start screen again */
-function restartQuiz () {
+function attachRestartQuiz () {
     const restartButton = $('.restartButton');
     const theStart = $('.container-start');
     
     restartButton.on('click', function (event) {
         event.preventDefault();
-        console.log('restart button clicked');
 
         const theRestartOption = $('.container-restart');
         const theEnd = $('.container-end');
 
         question = 0;
+        printQuestion(DATASTORE[question]);
         printQuestionCount(question, DATASTORE.length);
 
         scoreCorrect = 0;
@@ -151,10 +143,7 @@ function restartQuiz () {
         theEnd.hide();
         theStart.show();
     });
-
-    printQuestion(DATASTORE[question]);
 }
-
 
 function clearSelection () {
     //make sure all inputs are unselected
@@ -165,9 +154,8 @@ function clearSelection () {
 }
 
 
-
-//TODO: write a function that determines if the user has the correct answer and what to do if they don't
-//adding it to the score if they do have the answer correct
+//Write a function that determines if the user has the correct answer and what to do if they don't
+//Adding it to the score if they do have the answer correct
 function correctAnswer () {
     let userAnswer = $('.option > input:checked');
     console.log(userAnswer.val());
@@ -182,7 +170,6 @@ function correctAnswer () {
     }
     
 }
-
 
 /**if correctAnswer === true; then print "CORRECT"
 if correctAnswer === false; then print "WRONG"
@@ -211,18 +198,15 @@ function attachContinueQuestions () {
     });
 }
 
-// //the end
-// const theEnd = $('.container-end');
-// theEnd.show();
 
-
+//the end
 //jQuery document loaded function
 $(function () {
     const generateQuestion = DATASTORE[question];
     printQuestion (generateQuestion);
     selectSubmit();
     startQuiz();
-    //restartQuiz();
+    attachRestartQuiz();
     attachContinueQuestions();
     console.log("page loaded");
 });

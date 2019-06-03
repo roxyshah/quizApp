@@ -99,7 +99,7 @@ function selectSubmit () {
  * if there are no more questions, show the end page
  * if there are more questions, show the question page again
  */
-function continuteQuestion () {
+function continueQuestion () {
     const nextQuestion = getNextQuestion();
     const theAnswerResult = $('.container-answerResult');
     theAnswerResult.hide();
@@ -156,7 +156,7 @@ function clearSelection () {
 
 //Write a function that determines if the user has the correct answer and what to do if they don't
 //Adding it to the score if they do have the answer correct
-function correctAnswer () {
+function validateAnswer () {
     let userAnswer = $('.option > input:checked');
     console.log(userAnswer.val());
     console.log(DATASTORE[question].answer);
@@ -171,8 +171,8 @@ function correctAnswer () {
     
 }
 
-/**if correctAnswer === true; then print "CORRECT"
-if correctAnswer === false; then print "WRONG"
+/**if validateAnswer === true; then print "CORRECT"
+if validateAnswer === false; then print "WRONG"
 in the case that the user answers correctly, we want to hide the question and tell the user they're correct
 in the case they the user answers incorrectly, we want to hide the question and tell the user they're incorrect*/
 function showResult () {
@@ -180,8 +180,8 @@ function showResult () {
     const theQuestion = $('.container-question'); 
     theAnswerResult.show();
     theQuestion.hide();
-    //let correctAnsP = $('.container-correctAnswer > p');
-    if (correctAnswer() === true) {
+    //let correctAnsP = $('.container-validateAnswer > p');
+    if (validateAnswer() === true) {
         theAnswerResult.find('p').text("That's correct!");
         scoreCorrect++;
     } 
@@ -194,7 +194,7 @@ function showResult () {
 
 function attachContinueQuestions () {
     $('.nextButton').on('click', function (event) {
-        continuteQuestion();
+        continueQuestion();
     });
 }
 

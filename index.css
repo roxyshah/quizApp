@@ -1,10 +1,14 @@
+html {
+    height: 100%;
+}
+
 body {
     background-image: url("./images/background_quizApp.png");
     background-color: #cccccc; /* Used if the image is unavailable */
     background-repeat: no-repeat; /* Do not repeat the image */
     padding-top: 100px;
-    height: 680px; /* You must set a specified height */
-    background-position: center; /* Center the image */
+    /* height: 680px; You must set a specified height */
+    /* background-position: center; Center the image */
     background-size: cover;
     color: white;
 }
